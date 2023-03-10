@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta charset="utf-8">
+    <title>第一次课程作业</title>
+</head>
+
 <body>
-    <h1>第一次课程作业</h1>
     <?php
     echo "1.百钱买百鸡问题";
     echo "<br>";
