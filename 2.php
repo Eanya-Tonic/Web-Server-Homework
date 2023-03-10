@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>第二次课程作业</title>
+    <title>第二次课程作业-数组</title>
 </head>
 
 <body>
