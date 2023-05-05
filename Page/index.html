@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>电商数据库分页显示程序</title>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 50px;
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pagination a {
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            margin-right: 10px;
+        }
+
+        .pagination span {
+            color: #fff;
+            background-color: #333;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            margin-right: 10px;
+        }
+
+        .pagination a:hover {
+            background-color: #f8f9fa;
+        }
+
+        .pagination .active span {
+            color: #fff;
+            background-color: #333;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            margin-right: 10px;
+        }
+
+        .pagination .disabled span {
+            color: #ccc;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>商品列表</h1>
+    <table id="data">
+        <tr>
+            <th>商品序号</th>
+            <th>商品名称</th>
+            <th>商品类别</th>
+        </tr>
+    </table>
+    <div class="pagination" id="pagination"></div>
+    <script>
+        $(document).ready(function () {
+            // 初始页码为1
+            var page = 1;
+            // 加载数据
+            load_data(page);
+            // 分页按钮点击事件
+            $('#pagination').on('click', 'a', function (e) {
+                e.preventDefault();
+                // 获取点击的页码
+                var page = $(this).data('page');
+                // 加载数据
+                load_data(page);
+            });
+            function load_data(page) {
+                $.ajax({
+                    url: 'get_data.php',
+                    type: 'get',
+                    data: { page: page },
+                    dataType: 'json',
+                    success: function (data) {
+                        // 判断是否有数据
+                        if(data.length == 0){
+                            alert('没有更多数据了');
+                            return;
+                        }
+                        // 清空表格数据
+                        $('#data tr:not(:first)').remove();
+                        // 添加新数据
+                        $.each(data, function (i, item) {
+                            var row = '<tr><td>' + item.id + '</td><td>' + item.name + '</td><td>' + item.category + '</td></tr>';
+                            $('#data').append(row);
+                        });
+                        // 生成分页按钮
+                        var pagination = '<a href="#" data-page="' + (page - 1) + '">上一页</a>';
+                        for (var i = page - 3; i <= page; i++) {
+                            if (i == page) {
+                                continue;
+                            }
+                            else if(i > 0){
+                                pagination += '<a href="#" data-page="' + i + '">' + i + '</a>';
+                            }
+                        }
+                        for (var i = page; i <= page + 3; i++) {
+                            if (i == page) {
+                                pagination += '<span>' + i + '</span>';
+                            }
+                            else {
+                                pagination += '<a href="#" data-page="' + i + '">' + i + '</a>';
+                            }
+                        }
+                        pagination += '<a href="#" data-page="' + (page + 1) + '">下一页</a>';
+                        // 显示分页按钮
+                        $('#pagination').html(pagination);
+                    },
+                    error: function () {
+                        alert('加载数据失败');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
