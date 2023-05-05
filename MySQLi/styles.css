@@ -1,0 +1,120 @@
+/* 去除表格边框 */
+table {
+  border-collapse: collapse;
+}
+
+/* 表格标题样式 */
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* 表格样式 */
+table {
+  width: 100%;
+  margin: 20px 0;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* 表格中按钮样式 */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+/* 添加学生按钮 */
+.add-btn-div {
+  text-align: center;
+}
+
+.add-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.add-btn:hover {
+  background-color: #3e8e41;
+}
+
+/* 删除学生按钮 */
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #ff2a1a;
+}
+
+/* 编辑学生按钮 */
+.edit-btn {
+  background-color: #2196F3;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.edit-btn:hover {
+  background-color: #0275d8;
+}
+
+/* 表单样式 */
+form {
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+input[type=text],
+input[type=number] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #3e8e41;
+}
